@@ -1,0 +1,123 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-neon: var(--neon);
+  --color-neon-foreground: var(--neon-foreground);
+  --color-cyan: var(--cyan);
+  --font-display: "Orbitron", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Rajdhani", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 1rem;
+  --background: oklch(0.16 0.04 296);
+  --foreground: oklch(0.96 0.01 300);
+  --card: oklch(0.22 0.05 295 / 45%);
+  --card-foreground: oklch(0.96 0.01 300);
+  --popover: oklch(0.2 0.05 295);
+  --popover-foreground: oklch(0.96 0.01 300);
+  --primary: oklch(0.53 0.26 302);
+  --primary-foreground: oklch(0.98 0.01 300);
+  --secondary: oklch(0.28 0.06 295);
+  --secondary-foreground: oklch(0.96 0.01 300);
+  --muted: oklch(0.28 0.05 295);
+  --muted-foreground: oklch(0.75 0.04 300);
+  --accent: oklch(0.32 0.09 300);
+  --accent-foreground: oklch(0.98 0.01 300);
+  --destructive: oklch(0.62 0.24 20);
+  --destructive-foreground: oklch(0.98 0.01 300);
+  --border: oklch(0.6 0.18 305 / 28%);
+  --input: oklch(0.6 0.18 305 / 22%);
+  --ring: oklch(0.65 0.28 350);
+  --neon: oklch(0.65 0.28 0.4);
+  --neon-foreground: oklch(0.99 0.01 300);
+  --cyan: oklch(0.83 0.15 200);
+
+  --gradient-neon: linear-gradient(135deg, oklch(0.53 0.26 302), oklch(0.65 0.28 0.4));
+  --gradient-surface: linear-gradient(
+    140deg,
+    oklch(0.28 0.07 300 / 55%),
+    oklch(0.2 0.05 295 / 35%)
+  );
+  --shadow-neon: 0 0 24px oklch(0.53 0.26 302 / 45%);
+  --shadow-pink: 0 0 24px oklch(0.65 0.28 0.4 / 45%);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    background-image:
+      radial-gradient(circle at 12% 8%, oklch(0.53 0.26 302 / 22%), transparent 45%),
+      radial-gradient(circle at 88% 82%, oklch(0.65 0.28 0.4 / 18%), transparent 50%),
+      linear-gradient(oklch(1 0 0 / 3%) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(1 0 0 / 3%) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 44px 44px, 44px 44px;
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+  }
+}
+
+@utility glass {
+  background-image: var(--gradient-surface);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  box-shadow: 0 10px 40px oklch(0.1 0.05 300 / 55%);
+}
+
+@utility neon-text {
+  background-image: var(--gradient-neon);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility neon-ring {
+  box-shadow: var(--shadow-neon);
+}
+
+@utility neon-ring-pink {
+  box-shadow: var(--shadow-pink);
+}
